@@ -2,4 +2,4 @@
 .godot/
 /android/
 .vscode/
-**.uid
+**.cs.uid

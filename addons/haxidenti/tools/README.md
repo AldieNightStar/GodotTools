@@ -53,6 +53,9 @@ AtlasUtil.Slice(texture, countX, countY, tileW, tileH);
 // Create
 var chan = new Chan<int>();
 
+// Or Get from Global by defining custom type
+var chan = Chans.Of<CustomEventType>();
+
 // Clear all the listeners
 chan.Clear();
 

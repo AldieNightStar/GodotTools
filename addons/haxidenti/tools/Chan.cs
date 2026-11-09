@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 namespace HaxiDenti.Tools;
 
-public class Chan<T> : IDisposable
+public interface IChan;
+
+public class Chan<T> : IDisposable, IChan
 {
     private HashSet<Action<T>> _actions = new();
 

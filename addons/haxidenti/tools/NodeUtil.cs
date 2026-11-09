@@ -143,4 +143,9 @@ public class NodeUtil
         timer.Start();
         return timer;
     }
+
+    public static void DeferCall(Action act)
+    {
+        Callable.From(act).CallDeferred();
+    }
 }
