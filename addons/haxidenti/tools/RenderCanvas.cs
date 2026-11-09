@@ -93,14 +93,11 @@ public partial class RenderCanvas : Node2D
             font.DrawString(Canvas.CanvasRid, pos, text, alignment, fontSize: fontSize, modulate: color);
         }
 
-        public void Clear()
-        {
-            RenderingServer.CanvasItemClear(Canvas.CanvasRid);
-        }
+        public void Clear() => RenderingServer.CanvasItemClear(Canvas.CanvasRid);
 
-        public Vector2 GetMousePointer()
-        {
-            return Canvas.GetLocalMousePosition();
-        }
+        public Vector2 GetMousePointer() => Canvas.GetLocalMousePosition();
+
+        public void Transform(Transform2D trans) => RenderingServer.CanvasItemSetTransform(Canvas.CanvasRid, trans);
+        public void Transform() => RenderingServer.CanvasItemSetTransform(Canvas.CanvasRid, Transform2D.Identity);
     }
 }
