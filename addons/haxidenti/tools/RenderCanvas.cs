@@ -32,6 +32,12 @@ public partial class RenderCanvas : Node2D
             Canvas = canvas;
         }
 
+        public RenderCanvasControl Into(Node node)
+        {
+            node.AddChild(Canvas);
+            return this;
+        }
+
         public void DrawTexture(AtlasTexture t, Rect2 rect)
         {
             if (t == default) return;

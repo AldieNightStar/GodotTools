@@ -161,3 +161,29 @@ var lazy = new Lazy(() => 32);
 // Will compute first time, then reuse that value
 lazy.Value;
 ```
+
+# RenderCanvas
+```cs
+// Create new Render Canvas Node
+// By using Into(node), you can add it as child to some node
+var can = RenderCanvas.Create().Into(node)
+
+// Node2D element with Canvas RID
+can.Canvas
+
+// Clears drawings
+can.Clear();
+
+// Gets local mouse pointer
+can.GetMousePointer();
+
+// Draws Texture2D/AtlasTexture at some coordinates
+can.DrawTexture(t, rect);
+can.DrawTexture(t, x, y, w, h);
+
+// Draws geometric figures
+can.DrawRect(color, rect);
+can.DrawRect(color, x, y, w, h);
+can.DrawLine(color, start, end, width=1);
+can.DrawCircle(color, pos, radius);
+```
