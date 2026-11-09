@@ -74,14 +74,23 @@ public partial class RenderCanvas : Node2D
             DrawRect(color, new Rect2(x, y, w, h));
         }
 
-        public void DrawLine(Color color, Vector2 start, Vector2 end, float width=1)
+        public void DrawLine(Color color, Vector2 start, Vector2 end, float width = 1)
         {
-            RenderingServer.CanvasItemAddLine(Canvas.CanvasRid, start, end ,color, width);
+            RenderingServer.CanvasItemAddLine(Canvas.CanvasRid, start, end, color, width);
         }
 
         public void DrawCircle(Color color, Vector2 pos, float radius)
         {
             RenderingServer.CanvasItemAddCircle(Canvas.CanvasRid, pos, radius, color);
+        }
+
+        public void DrawText(Font font, string text, Vector2 pos, int fontSize,
+            HorizontalAlignment alignment = HorizontalAlignment.Left,
+            Color color=default)
+        {
+            if (font == null) font = ThemeDB.FallbackFont;
+            if (color == default) color = Colors.White;
+            font.DrawString(Canvas.CanvasRid, pos, text, alignment, fontSize: fontSize, modulate: color);
         }
 
         public void Clear()

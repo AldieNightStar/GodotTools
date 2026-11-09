@@ -186,4 +186,8 @@ can.DrawRect(color, rect);
 can.DrawRect(color, x, y, w, h);
 can.DrawLine(color, start, end, width=1);
 can.DrawCircle(color, pos, radius);
+
+// Draws text
+// font can be null - then will use default
+can.DrawText(font, text, pos, fontSize, alignment=HorizontalAlignment.Left, color=Colors.White);
 ```
