@@ -1,5 +1,7 @@
 using Godot;
 
+namespace HaxiDenti.Tools;
+
 public class AtlasUtil
 {
     public static AtlasTexture[] Slice(Texture2D masterTexture, int countX, int countY, int tileW, int tileH)

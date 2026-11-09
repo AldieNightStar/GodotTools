@@ -150,3 +150,14 @@ RandomUtil.ChooseByChance(
 RandomUtil.Reset();
 RandomUtil.Reset(seed);
 ```
+
+
+# Lazy
+```cs
+// Create Lazy Object
+var lazy = new Lazy(() => 32);
+
+// Get value
+// Will compute first time, then reuse that value
+lazy.Value;
+```

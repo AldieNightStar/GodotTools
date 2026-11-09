@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace Game.Util;
+namespace HaxiDenti.Tools;
 
 public class AnimationUtil
 {
