@@ -95,19 +95,9 @@ public class NodeUtil
         }
     }
 
-    public static void SetProcessing(CanvasItem item, bool flag)
+    public static void SetProcessing(Node item, bool active)
     {
-        var PROC = Node.ProcessModeEnum.Inherit;
-        var IGNORE = Node.ProcessModeEnum.Disabled;
-
-        item.SetProcess(flag);
-        item.SetProcessInput(flag);
-        item.SetProcessInternal(flag);
-        item.SetProcessUnhandledInput(flag);
-        item.SetProcessUnhandledKeyInput(flag);
-        item.SetPhysicsProcess(flag);
-        item.SetPhysicsProcessInternal(flag);
-        item.ProcessMode = flag ? PROC : IGNORE;
+        item.ProcessMode = active ? Node.ProcessModeEnum.Inherit : Node.ProcessModeEnum.Disabled;
     }
 
     public static void ProcessOnly(Node node, string[] names)
@@ -115,7 +105,7 @@ public class NodeUtil
         var items = node.GetChildren().OfType<CanvasItem>();
         foreach (var item in items)
         {
-            var flag = names.Contains<string>(item.Name);
+            var flag = names.Contains(item.Name);
             item.Visible = flag;
             SetProcessing(item, flag);
         }
