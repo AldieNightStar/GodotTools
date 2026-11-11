@@ -191,6 +191,11 @@ can.DrawCircle(color, pos, radius);
 // Draws text
 // font can be null - then will use default
 can.DrawText(font, text, pos, fontSize, alignment=HorizontalAlignment.Left, color=Colors.White);
+
+// Using transform
+// [!] Note, that we need to use `Transform2D.Identity` for new Transform2D objects, not `new()`
+can.Transform(Transform2D.Identity.TranslatedLocal(pos).ScaledLocal(size));
+can.Transform(); // Clean
 ```
 
 # Object Pools
