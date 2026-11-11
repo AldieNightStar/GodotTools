@@ -6,28 +6,25 @@ namespace HaxiDenti.Tools;
 
 public class NodeUtil
 {
-    // Path setting
-    private static string PATH_TEMPLATE = "res://View/$$/$$.tscn";
-
-    public static T Instance<T>(string templateName) where T : Node
+    public static T Instance<T>(string sceneFilePath) where T : Node
     {
-        var scene = GD.Load<PackedScene>(PATH_TEMPLATE.Replace("$$", templateName));
+        var scene = GD.Load<PackedScene>(sceneFilePath);
         if (scene == null) return null;
 
         var node = scene.Instantiate<T>();
         return node;
     }
 
-    public static T Spawn<T>(Node into, string templateName) where T : Node
+    public static T Spawn<T>(Node into, string sceneFilePath) where T : Node
     {
-        var node = Instance<T>(templateName);
+        var node = Instance<T>(sceneFilePath);
         into.AddChild(node);
         return node;
     }
 
-    public static T SpawnAt<T>(Node into, string templateName, Vector2 gPos) where T : Node2D
+    public static T SpawnAt<T>(Node into, string sceneFilePath, Vector2 gPos) where T : Node2D
     {
-        var node = Spawn<T>(into, templateName);
+        var node = Spawn<T>(into, sceneFilePath);
         if (node != null)
         {
             node.GlobalPosition = gPos;
@@ -35,12 +32,12 @@ public class NodeUtil
         return node;
     }
 
-    public static T CreateOrUpdate<T>(Node parent, string nodeName, string templateName, Action<T> update) where T : Node
+    public static T CreateOrUpdate<T>(Node parent, string nodeName, string sceneFilePath, Action<T> update) where T : Node
     {
         var node = parent.GetNodeOrNull<T>(nodeName);
         if (node == null)
         {
-            node = Spawn<T>(parent, templateName);
+            node = Spawn<T>(parent, sceneFilePath);
             node.Name = nodeName;
         }
 
@@ -124,9 +121,9 @@ public class NodeUtil
         }
     }
 
-    public static T ChangeScene<T>(Node prev, string templateName, Action<T> act = null) where T : Node
+    public static T ChangeScene<T>(Node prev, string sceneFilePath, Action<T> act = null) where T : Node
     {
-        var scene = Instance<T>(templateName);
+        var scene = Instance<T>(sceneFilePath);
         if (act != null) act(scene);
         var root = prev.GetTree().Root;
         root.AddChild(scene);
