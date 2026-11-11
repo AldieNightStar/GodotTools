@@ -192,3 +192,17 @@ can.DrawCircle(color, pos, radius);
 // font can be null - then will use default
 can.DrawText(font, text, pos, fontSize, alignment=HorizontalAlignment.Left, color=Colors.White);
 ```
+
+# Object Pools
+* Allows to use less `GC` and reallocate
+* Used only for `class` objects, not for `struct`
+```cs
+// Create new one
+var pool = new ObjectPool<MyType>();
+
+// Poll already allocated value from pool
+var value = pool.Poll();
+
+// Free the value back to pool
+pool.Free(value);
+```
