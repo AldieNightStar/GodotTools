@@ -22,20 +22,10 @@ public class Chan<T> : IDisposable, IChan
         }
     }
 
-    public void Listen(Action<T> act)
+    public IDisposable Listen(Action<T> act)
     {
         _actions.Add(act);
-    }
-
-    public IDisposable ListenDispose(Action<T> act)
-    {
-        Listen(act);
-        return new Subscription(this, act);
-    }
-
-    public void Unlisten(Action<T> act)
-    {
-        _actions.Remove(act);
+        return new Subscription(_actions, act);
     }
 
     public void Dispose()
@@ -43,13 +33,13 @@ public class Chan<T> : IDisposable, IChan
         Clear();
     }
 
-    private class Subscription(Chan<T> Ch, Action<T> Act) : IDisposable
+    private struct Subscription(HashSet<Action<T>> Actions, Action<T> Act) : IDisposable
     {
         public void Dispose()
         {
-            if (Ch == null || Act == null) return;
-            Ch.Unlisten(Act);
-            Ch = null;
+            if (Actions == null || Act == null) return;
+            Actions.Remove(Act);
+            Actions = null;
             Act = null;
         }
     }

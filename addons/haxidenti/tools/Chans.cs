@@ -12,4 +12,15 @@ public class Chans
         if (!_dict.ContainsKey(type)) _dict[type] = new Chan<T>();
         return (Chan<T>) _dict[type];
     }
+
+    public static void ClearOf<T>()
+    {
+        var type = typeof(T);
+        _dict.Remove(type);
+    }
+
+    public static void ClearAll()
+    {
+        _dict.Clear();
+    }
 }

@@ -60,15 +60,13 @@ var chan = Chans.Of<CustomEventType>();
 chan.Clear();
 
 // Send data
-chan.Send(123);
+chan.Send(data);
 
-// Subscriber operations
-// [!] Need to Unlisten() by hands, or use `IDisposable` way
-chan.Listen(action);
-chan.Unlisten(action);
+// Listen to events
+// [!] Need to .Dispose() when done
+var connection = chan.Listen((data) => {});
 
-// Listen with disposable to cancel at any time
-var disposable = chan.ListenDispose(action);
+// Close connection
 disposable.Dispose();
 ```
 
@@ -143,10 +141,10 @@ RandomUtil.Choose(array);
 
 // Choose elements by chance table
 RandomUtil.ChooseByChance(
-	(item1, 0.5),
-	(item2, 0.3),
-	(item3, 0.1),
-	(item4, 0.01)
+    (item1, 0.5),
+    (item2, 0.3),
+    (item3, 0.1),
+    (item4, 0.01)
 );
 
 // Resets the generator

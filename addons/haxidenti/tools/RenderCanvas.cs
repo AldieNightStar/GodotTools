@@ -99,5 +99,7 @@ public partial class RenderCanvas : Node2D
 
         public void Transform(Transform2D trans) => RenderingServer.CanvasItemSetTransform(Canvas.CanvasRid, trans);
         public void Transform() => RenderingServer.CanvasItemSetTransform(Canvas.CanvasRid, Transform2D.Identity);
+
+        public bool IsValid => IsInstanceValid(Canvas);
     }
 }
